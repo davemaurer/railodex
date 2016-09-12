@@ -39,7 +39,7 @@ describe 'this person view', type: :feature do
       phone = person.phone_numbers.first
       old_number = phone.number
 
-      first(:link, 'edit').click
+      first('.phone-number').click_link('edit')
       page.fill_in('Number', with: '555-9999')
       page.click_button('Update Phone number')
 
@@ -57,7 +57,7 @@ describe 'this person view', type: :feature do
     it 'can delete a phone number' do
       expect(page).to have_content('555-5555')
 
-      first(:link, 'delete').click
+      first('.phone-number').click_link('delete')
 
       expect(current_path).to eq(person_path(person))
       expect(page).not_to have_content('555-5555')
@@ -94,6 +94,19 @@ describe 'this person view', type: :feature do
       person.email_addresses.each do |email|
         expect(page).to have_link('edit', href: edit_email_address_path(email))
       end
+    end
+
+    it 'can edit an email address' do
+      email = person.email_addresses.first
+      old_address = email.address
+
+      first('.email-address').click_link('edit')
+      page.fill_in('Address', with: 'betteraddress@me.com')
+      page.click_button('Update Email address')
+
+      expect(current_path).to eq(person_path(person))
+      expect(page).to have_content('betteraddress@me.com')
+      expect(page).not_to have_content(old_address)
     end
   end
 end
