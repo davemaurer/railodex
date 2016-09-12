@@ -54,9 +54,6 @@ RSpec.describe PhoneNumbersController, type: :controller do
       end
 
       it "redirects to the phone numbers person" do
-        bruce = Person.create(first_name: 'Bruce', last_name: 'Lee')
-        valid_attributes = { number: '555-6789', person_id: bruce.id }
-
         post :create, params: {phone_number: valid_attributes}, session: valid_session
 
         expect(response).to redirect_to(bruce)
