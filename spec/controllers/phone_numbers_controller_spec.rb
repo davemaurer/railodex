@@ -85,16 +85,16 @@ RSpec.describe PhoneNumbersController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        { number: 'oicu812', person_id: 2 }
-      }
+      let(:bill) { Person.create(first_name: 'Bill', last_name: 'Gates') }
+      let(:valid_attributes) { { number: '555-2323', person_id: bill.id } }
+      let(:new_attributes) { { number: 'oicu812', person_id: bill.id } }
 
       it "updates the requested phone_number" do
         phone_number = PhoneNumber.create! valid_attributes
         put :update, params: {id: phone_number.to_param, phone_number: new_attributes}, session: valid_session
         phone_number.reload
         expect(phone_number.number).to eq('oicu812')
-        expect(phone_number.person_id).to eq(2)
+        expect(phone_number.person_id).to eq(1)
       end
 
       it "assigns the requested phone_number as @phone_number" do
@@ -106,7 +106,7 @@ RSpec.describe PhoneNumbersController, type: :controller do
       it "redirects to the phone_number" do
         phone_number = PhoneNumber.create! valid_attributes
         put :update, params: {id: phone_number.to_param, phone_number: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(phone_number)
+        expect(response).to redirect_to(bill)
       end
     end
 
