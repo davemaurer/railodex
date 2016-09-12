@@ -55,12 +55,15 @@ describe 'this person view', type: :feature do
     end
 
     it 'can delete a phone number' do
-      expect(page).to have_content('555-5555')
+      phone = person.phone_numbers.first
+      old_number = phone.number
+
+      expect(page).to have_content(old_number)
 
       first('.phone-number').click_link('delete')
 
       expect(current_path).to eq(person_path(person))
-      expect(page).not_to have_content('555-5555')
+      expect(page).not_to have_content(old_number)
     end
   end
 
