@@ -35,7 +35,7 @@ describe 'this person view', type: :feature do
       end
     end
 
-    it 'edits a phone number' do
+    it 'can edit a phone number' do
       phone = person.phone_numbers.first
       old_number = phone.number
 
@@ -107,6 +107,12 @@ describe 'this person view', type: :feature do
       expect(current_path).to eq(person_path(person))
       expect(page).to have_content('betteraddress@me.com')
       expect(page).not_to have_content(old_address)
+    end
+
+    it 'has a delete link for each email address' do
+      person.email_addresses.each do |email|
+        expect(page).to have_link('delete', href: email_address_path(email))
+      end
     end
   end
 end
