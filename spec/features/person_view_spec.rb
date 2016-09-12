@@ -34,7 +34,7 @@ describe 'this person view', type: :feature do
     end
   end
 
-  xit 'edits a phone number' do
+  it 'edits a phone number' do
     phone = person.phone_numbers.first
     old_number = phone.number
 
