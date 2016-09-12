@@ -1,15 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe PhoneNumbersController, type: :controller do
-
-  let(:valid_attributes) {
-    { number: '8675309', person_id: 1 }
-  }
-
-  let(:invalid_attributes) {
-    { number: nil, person_id: nil }
-  }
-
+  let(:valid_attributes) { { number: '8675309', person_id: 1 } }
+  let(:invalid_attributes) { { number: nil, person_id: nil } }
   let(:valid_session) { {} }
 
   describe "GET #index" do
@@ -126,6 +119,9 @@ RSpec.describe PhoneNumbersController, type: :controller do
   end
 
   describe "DELETE #destroy" do
+    let(:bill) { Person.create(first_name: 'Bill', last_name: 'Gates') }
+    let(:valid_attributes) { {number: '555-2323', person_id: bill.id} }
+
     it "destroys the requested phone_number" do
       phone_number = PhoneNumber.create! valid_attributes
       expect {
@@ -133,10 +129,10 @@ RSpec.describe PhoneNumbersController, type: :controller do
       }.to change(PhoneNumber, :count).by(-1)
     end
 
-    it "redirects to the phone_numbers list" do
+    it "redirects to the phone_number's person after deleting" do
       phone_number = PhoneNumber.create! valid_attributes
       delete :destroy, params: {id: phone_number.to_param}, session: valid_session
-      expect(response).to redirect_to(phone_numbers_url)
+      expect(response).to redirect_to(bill)
     end
   end
 
