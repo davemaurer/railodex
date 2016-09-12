@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe EmailAddressesController, type: :controller do
-  let(:valid_attributes) { { address: 'coolguy@chill.com' } }
+  let(:valid_attributes) { { address: 'coolguy@chill.com', person_id: 1} }
   let(:invalid_attributes) { { address: nil } }
   let(:valid_session) { {} }
 
@@ -71,7 +71,7 @@ RSpec.describe EmailAddressesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { { address: 'super@super.com' } }
+      let(:new_attributes) { { address: 'super@super.com', person_id: 1 } }
 
       it "updates the requested email_address" do
         email_address = EmailAddress.create! valid_attributes
