@@ -135,5 +135,4 @@ RSpec.describe PhoneNumbersController, type: :controller do
       expect(response).to redirect_to(bill)
     end
   end
-
 end

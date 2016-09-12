@@ -133,5 +133,4 @@ RSpec.describe PeopleController, type: :controller do
       expect(response).to redirect_to(people_url)
     end
   end
-
 end

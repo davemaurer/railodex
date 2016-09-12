@@ -52,4 +52,13 @@ describe 'this person view', type: :feature do
       expect(page).to have_link('delete', href: phone_number_path(phone))
     end
   end
+
+  it 'can delete a phone number' do
+    expect(page).to have_content('555-5555')
+
+    first(:link, 'delete').click
+
+    expect(current_path).to eq(person_path(person))
+    expect(page).not_to have_content('555-5555')
+  end
 end
