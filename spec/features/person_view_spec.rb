@@ -74,5 +74,11 @@ describe 'this person view', type: :feature do
     it 'has li tags for each email address' do
       expect(page).to have_selector('li', text: 'batman@batman.com')
     end
+
+    it 'has an add email address link' do
+      page.click_link('Add new email address')
+
+      expect(current_path).to eq(new_email_address_path)
+    end
   end
 end
