@@ -56,8 +56,8 @@ class EmailAddressesController < ApplicationController
   def destroy
     @email_address.destroy
     respond_to do |format|
-      format.html { redirect_to email_addresses_url, notice: 'Email address was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to @email_address.person, notice: 'Email address was successfully destroyed.' }
+      format.json { head :no_content, location: @email_address.person }
     end
   end
 
