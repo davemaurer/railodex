@@ -12,7 +12,8 @@ RSpec.describe Company, type: :model do
     expect(company).not_to be_valid
   end
 
-  it 'has an array of phone numbers' do
-    expect(company.phone_numbers).to eq([])
+  it 'responds with its created phone numbers' do
+    company.phone_numbers.build(number: '555-0987')
+    expect(company.phone_numbers.map(&:number)).to eq(['555-0987'])
   end
 end
