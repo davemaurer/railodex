@@ -5,22 +5,6 @@ RSpec.describe EmailAddressesController, type: :controller do
   let(:invalid_attributes) { { address: nil, contact_id: nil } }
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all email_addresses as @email_addresses" do
-      email_address = EmailAddress.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(assigns(:email_addresses)).to eq([email_address])
-    end
-  end
-
-  describe "GET #show" do
-    it "assigns the requested email_address as @email_address" do
-      email_address = EmailAddress.create! valid_attributes
-      get :show, params: {id: email_address.to_param}, session: valid_session
-      expect(assigns(:email_address)).to eq(email_address)
-    end
-  end
-
   describe "GET #new" do
     it "assigns a new email_address as @email_address" do
       get :new, params: {}, session: valid_session
