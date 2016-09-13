@@ -16,4 +16,9 @@ RSpec.describe Company, type: :model do
     company.phone_numbers.build(number: '555-0987')
     expect(company.phone_numbers.map(&:number)).to eq(['555-0987'])
   end
+
+  it 'responds with its created email addresses' do
+    company.email_addresses.build(address: 'Robco@comp.com')
+    expect(company.email_addresses.map(&:address)).to eq(['Robco@comp.com'])
+  end
 end

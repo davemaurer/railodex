@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe EmailAddressesController, type: :controller do
-  let(:valid_attributes) { { address: 'coolguy@chill.com', person_id: 1} }
-  let(:invalid_attributes) { { address: nil, person_id: nil } }
+  let(:valid_attributes) { { address: 'coolguy@chill.com', contact_id: 1 } }
+  let(:invalid_attributes) { { address: nil, contact_id: nil } }
   let(:valid_session) { {} }
 
   describe "GET #index" do
@@ -38,7 +38,7 @@ RSpec.describe EmailAddressesController, type: :controller do
 
   describe "POST #create" do
     let(:john) { Person.create(first_name: 'John', last_name: 'Connor') }
-    let(:valid_attributes) { { address: 'john@terminator.com', person_id: john.id } }
+    let(:valid_attributes) { { address: 'john@terminator.com', contact_id: john.id } }
 
     context "with valid params" do
       it "creates a new EmailAddress" do
@@ -75,8 +75,8 @@ RSpec.describe EmailAddressesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:bruce) { Person.create(first_name: 'Bruce', last_name: 'Wayne') }
-      let(:valid_attributes) { {address: 'darkknight@me.com', person_id: bruce.id} }
-      let(:new_attributes) { { address: 'super@super.com', person_id: bruce.id } }
+      let(:valid_attributes) { {address: 'darkknight@me.com', contact_id: bruce.id} }
+      let(:new_attributes) { { address: 'super@super.com', contact_id: bruce.id } }
 
       it "updates the requested email_address" do
         email_address = EmailAddress.create! valid_attributes
@@ -115,7 +115,7 @@ RSpec.describe EmailAddressesController, type: :controller do
 
   describe "DELETE #destroy" do
     let(:bruce) { Person.create(first_name: 'Bruce', last_name: 'Wayne') }
-    let(:valid_attributes) { {address: 'darkknight@me.com', person_id: bruce.id} }
+    let(:valid_attributes) { {address: 'darkknight@me.com', contact_id: bruce.id} }
 
     it "destroys the requested email_address" do
       email_address = EmailAddress.create! valid_attributes
