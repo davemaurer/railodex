@@ -74,17 +74,17 @@ describe 'this company view', type: :feature do
       visit company_path(company)
     end
 
-    xit 'has li tags for each email address' do
+    it 'has li tags for each email address' do
       expect(page).to have_selector('li', text: 'Robco@company.com')
     end
 
-    xit 'has an add email address link' do
-      page.click_link('Add new email address', href: new_email_address_path(contact_id: company.id))
+    it 'has an add email address link' do
+      page.click_link('Add new email address', href: new_email_address_path(contact_id: company.id, contact_type: 'Company'))
 
       expect(current_path).to eq(new_email_address_path)
     end
 
-    xit 'adds a new email address to the page' do
+    it 'adds a new email address to the page' do
       page.click_link('Add new email address')
       page.fill_in('Address', with: 'newaddress@newaddress.com')
       page.click_button('Create Email address')
@@ -93,13 +93,13 @@ describe 'this company view', type: :feature do
       expect(page).to have_content('newaddress@newaddress.com')
     end
 
-    xit 'has an edit link for each email address' do
+    it 'has an edit link for each email address' do
       company.email_addresses.each do |email|
         expect(page).to have_link('edit', href: edit_email_address_path(email))
       end
     end
 
-    xit 'can edit an email address' do
+    it 'can edit an email address' do
       email = company.email_addresses.first
       old_address = email.address
 
@@ -112,13 +112,13 @@ describe 'this company view', type: :feature do
       expect(page).not_to have_content(old_address)
     end
 
-    xit 'has a delete link for each email address' do
+    it 'has a delete link for each email address' do
       company.email_addresses.each do |email|
         expect(page).to have_link('delete', href: email_address_path(email))
       end
     end
 
-    xit 'can delete an email address' do
+    it 'can delete an email address' do
       email = company.email_addresses.first
       old_address = email.address
 
