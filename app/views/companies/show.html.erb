@@ -6,12 +6,7 @@
 </p>
 
 <ul>
-  <% @company.phone_numbers.each do |number| %>
-    <li class="phone-number"><%= number.number %>
-      <%= link_to('edit', edit_phone_number_path(number)) %>
-      <%= link_to('delete', phone_number_path(number), method: 'delete') %>
-    </li>
-  <% end %>
+  <%= render 'phone_numbers/phone_numbers', phone_numbers: @company.phone_numbers %>
 </ul>
 
 <ul>
