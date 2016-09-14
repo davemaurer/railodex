@@ -2,14 +2,9 @@
 
 <h1>Companies</h1>
 
-<table>
-  <thead>
-  <tr>
-    <th>Company Name</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
+<h3><%= link_to 'New Company', new_company_path, id: 'new_company' %></h3>
 
+<table>
   <tbody>
   <% @companies.each do |company| %>
     <tr>
@@ -26,6 +21,3 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Company', new_company_path, id: 'new_company' %>
