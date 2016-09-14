@@ -28,4 +28,8 @@ RSpec.describe Person, type: :model do
     person.email_addresses.build(address: 'ohyesh@me.com')
     expect(person.email_addresses.map(&:address)).to eq(['ohyesh@me.com'])
   end
+
+  it 'converts to a string with last name, first name' do
+    expect(person.to_s).to eq('Skywalker, Luke')
+  end
 end
