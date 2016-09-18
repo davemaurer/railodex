@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   def create
-    render text: request.env['omniauth.auth'].inspect
+    data = request.env['omniauth.auth']
+    User.create(provider: data['provider'], uid: data['uid'], name: data['info']['name'])
+    render nothing: true
   end
 end
