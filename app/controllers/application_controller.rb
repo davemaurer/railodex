@@ -1,9 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  helper_method :current_user
+
+  def current_user
+    @current_user ||= User.find(session[:user_id])
+  end
 
   def find_resource
     class_name = params[:controller].singularize
     klass = class_name.camelize.constantize
-    self.instance_variable_set "@" + class_name, klass.find(params[:id])
+    self.instance_variable_set '@' + class_name, klass.find(params[:id])
   end
 end
