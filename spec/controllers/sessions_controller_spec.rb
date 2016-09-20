@@ -69,4 +69,18 @@ describe SessionsController do
     get :destroy
     expect(controller.current_user).to eq(nil)
   end
+
+  it 'redirects to the root path once the session is deleted' do
+    @request.env['omniauth.auth'] = {
+      provider: 'twitter',
+      info: {name: 'Darth Vader'},
+      uid: '555uhu'
+    }
+    user = User.create(provider: 'twitter', uid: '555uhu', name: 'Darth Vader')
+    post :create
+
+    expect(controller.current_user.id).to eq(user.id)
+    get :destroy
+    expect(response).to redirect_to(root_path)
+  end
 end
