@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Person, type: :model do
-  let(:person) { Person.new(first_name: 'Luke', last_name: 'Skywalker') }
+  let(:person) { Fabricate(:person) }
 
   it 'is valid' do
     expect(person).to be_valid
