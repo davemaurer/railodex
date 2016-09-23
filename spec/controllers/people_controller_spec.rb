@@ -13,10 +13,11 @@ RSpec.describe PeopleController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "assigns all people as @people" do
-      person = Person.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(assigns(:people)).to eq([person])
+    it "assigns the current user's people" do
+      user = User.create
+      person = Person.create! valid_attributes.merge(user_id: user.id)
+      get :index, {}, {:user_id => user.id}
+      assigns(:people).should eq([person])
     end
   end
 
