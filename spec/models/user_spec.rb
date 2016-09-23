@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { User.new }
+  let(:user) { Fabricate(:user) }
   let(:person_one) { Person.new(first_name: 'Bob', last_name: 'Smith') }
 
   it 'has associated people' do
