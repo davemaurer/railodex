@@ -32,4 +32,8 @@ RSpec.describe Person, type: :model do
   it 'converts to a string with last name, first name' do
     expect(person.to_s).to eq('Skywalker, Luke')
   end
+
+  it 'is a child of the user' do
+    expect(person.user).to be_instance_of(User)
+  end
 end
