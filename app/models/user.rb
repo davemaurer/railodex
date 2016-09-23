@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :people
+  has_many :companies
 
   def self.find_or_create_by_auth(auth_data)
     user = User.where(provider: auth_data[:provider], uid: auth_data[:uid]).first_or_create
